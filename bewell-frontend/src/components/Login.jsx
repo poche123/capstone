@@ -13,6 +13,7 @@ const Login = () => {
   function handleCallbackResponse(response) {
     console.log("Encoded token"+ response.credential);
     var userObject= jwtDecode(response.credential);
+    console.log (userObject)
     localStorage.setItem('user',JSON.stringify(userObject));
     const {name, sub, picture} = userObject;
 
