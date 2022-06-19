@@ -8,6 +8,7 @@ import Pins from './Pins'
 import { userQuery } from '../utils/data';
 import {client} from '../client';
 import logo from '../assets/BeWellLogo.png';
+import { fetchUser } from '../utils/fetchUser';
 
 
 
@@ -17,7 +18,7 @@ const Home = () => {
   const [user, setUser] = useState(null);
   const scrollRef = useRef(null);
 
-  const userInfo =localStorage.getItem('user') !=='undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
+  const userInfo = fetchUser();
 
   useEffect(() => {
     const query = userQuery(userInfo?.sub)
@@ -30,7 +31,6 @@ const Home = () => {
   useEffect(() => {
     scrollRef.current.scrollTo(0, 0)
   }, [])
-  
 
 
   return (
@@ -50,7 +50,7 @@ const Home = () => {
           </div>
           
           {toggleSidebar && (
-          <div className='fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in'> 
+          <div className='fixed w-3/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in'> 
            <div className='absolute w-full flex justify-end items-center p-2'>
              <AiFillCloseCircle fontSize={30} className="cursor-pointer" onClick={()=> setToggleSidebar(false)}/>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, Navigate, useNavigate } from 'react-router-dom';
 import {RiHomeFill} from 'react-icons/ri';
 import { IoIosArrowForward } from 'react-icons/io';
 
@@ -11,10 +11,12 @@ const Sidebar = ({user, closeToggle}) => {
     const isNotActiveStyle='flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize'
     const isActiveStyle='flex items-center px-5 gap-3 font-extrabold norder-r-2 border-black transition-all duration-200 ease-in-out capitalize'
 
+    const Navigate = useNavigate()
+
     const categories = [
         {name: 'Meditation'},
         {name: 'Good Habits'},
-        {name: 'Reading'},
+        {name: 'Culture'},
         {name: 'Other'},
     ]
     const handleCloseSidebar =() => {
@@ -39,7 +41,7 @@ const Sidebar = ({user, closeToggle}) => {
                     <RiHomeFill/>
                     Home
                 </NavLink>
-                <h3 className= "mt-2 px-5 text-base 2x1:text-xl"> Discover Categories </h3>
+                <h3 className= "mt-2 px-5 text-base 2x1:text-xl font-semibold"> Discover Categories </h3>
                 {categories.slice(0, categories.length -1).map((category) => (
                     <NavLink
                     to={`/category/${category.name}`}
@@ -50,7 +52,13 @@ const Sidebar = ({user, closeToggle}) => {
                         {category.name}
                     </NavLink>
                 ))}
+
             </div>
+             <button 
+                onClick={() => {window.localStorage.clear(); Navigate('/login')}}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 ml-4 w-40">
+                Logout
+             </button>
         </div>
         {user && (
             <Link

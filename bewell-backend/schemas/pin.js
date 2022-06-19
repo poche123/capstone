@@ -16,7 +16,7 @@ export default {
         {
             name: 'destination',
             title:'Destination',
-            type: 'url'
+            type: 'string'
         },
         {
             name: 'category',
