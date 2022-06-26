@@ -2,18 +2,20 @@ import React from 'react';
 import jwtDecode from 'jwt-decode';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import shareVideo from '../assets/share.mp4';
+import bcpic from '../assets/background.jpg';
 import logo from  '../assets/BeWellLogo.png';
 import { client } from '../client';
+import Cookies from 'universal-cookie';
 
 const Login = () => {
 
   const navigate= useNavigate();
 
+
   function handleCallbackResponse(response) {
-    console.log("Encoded token"+ response.credential);
+    
     var userObject= jwtDecode(response.credential);
-    console.log (userObject)
+    
     localStorage.setItem('user',JSON.stringify(userObject));
     const {name, sub, picture} = userObject;
 
@@ -40,7 +42,7 @@ const Login = () => {
       document.getElementById("signInDiv"),
       {theme:"outline", size:"large"}
     );
-    google.accounts.id.prompt()
+    
   }, [])
 
   
@@ -48,13 +50,9 @@ const Login = () => {
   return (
     <div className="flex justify-start items-center flex-col h-screen">
         <div className=" relative w-full h-full">
-          <video 
-            src={shareVideo}
-            type= 'video/mp4'
-            loop
-            controls={false}
-            muted
-            autoPlay
+          <img
+            src={bcpic}
+            type= 'image'
             className="w-full h-full object-cover"
           />
           <div className="absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay">

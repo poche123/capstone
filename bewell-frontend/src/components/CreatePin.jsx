@@ -26,7 +26,7 @@ const CreatePin = ({user}) => {
     if(type === 'image/png' ||type === 'image/svg' ||type === 'image/jpeg' || type === 'image/gif' || type === 'image/tiff' ){
       setWrongImageType(false);
       setLoading(true);
-      console.log(e.target.files[0])
+      
       client.assets
         .upload('image', e.target.files[0], {contentType:type, filename: name})
         .then((document) =>{
