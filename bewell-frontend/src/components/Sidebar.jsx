@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Link, Navigate, useNavigate } from 'react-router-dom';
 import {RiHomeFill} from 'react-icons/ri';
 import { IoIosArrowForward } from 'react-icons/io';
+import {GiAbstract063} from 'react-icons/gi'
 
 import logo from '../assets/BeWellLogo.png'
 
@@ -53,6 +54,16 @@ const Sidebar = ({user, closeToggle}) => {
                     </NavLink>
                 ))}
 
+            </div>
+            <div className='mt-6 flex flex-col gap-5'>
+                <NavLink
+                    to="/leaderboard"
+                    className={({isActive}) => isActive ? isActiveStyle : isNotActiveStyle}
+                    onClick={handleCloseSidebar}
+                    >
+                    <GiAbstract063/>
+                    Leaderboard
+                </NavLink>
             </div>
              <button 
                 onClick={() => {window.localStorage.clear(); Navigate('/login')}}

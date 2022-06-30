@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import {Navbar, Feed, PinDetail, CreatePin, Search} from '../components'
+import Leaderboard from '../components/Leaderboard';
 
 const Pins = ({user}) => {
 
@@ -20,6 +21,7 @@ const Pins = ({user}) => {
                 <Route path='/pin-detail/:pinId' element={<PinDetail user={user}/>}/> 
                 <Route path='/create-pin' element={<CreatePin user = {user}/>}/>
                 <Route path='/search' element={<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>}/>
+                <Route path= '/leaderboard' element= {<Leaderboard/>}/>
             </Routes>
 
         </div>

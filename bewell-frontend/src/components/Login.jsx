@@ -1,7 +1,8 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
-import { useEffect } from 'react';
+import { useEffect, useState, } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useInterval } from 'usehooks-ts';
 import bcpic from '../assets/background.jpg';
 import logo from  '../assets/BeWellLogo.png';
 import { client } from '../client';
@@ -31,8 +32,10 @@ const Login = () => {
       })
   }
 
+  const google = window.google
+
   useEffect(() => {
-    /* global google */
+    
     google.accounts.id.initialize({
       client_id: process.env.REACT_APP_GOOGLE_API_TOKEN,
       callback: handleCallbackResponse
